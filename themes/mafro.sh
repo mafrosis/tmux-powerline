@@ -41,6 +41,7 @@ if [ -z $TMUX_POWERLINE_RIGHT_STATUS_SEGMENTS ]; then
 		"lan_ip 24 255" \
 		"wan_ip 24 255 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		"load 237 167" \
+		"disk 237 167 ${TMUX_POWERLINE_SEPARATOR_LEFT_THIN}" \
 		#"tmux_mem_cpu_load 234 136" \
 		#"battery 137 127" \
 		"weather 37 255" \
