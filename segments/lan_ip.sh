@@ -18,12 +18,16 @@ run_segment() {
 		for nic in "${all_nics[@]}"; do
 			# Parse IP address for the NIC.
 			lan_ip="$(ip addr show ${nic} | grep '\<inet\>' | tr -s ' ' | cut -d ' ' -f3)"
-			# Trim the CIDR suffix.
-			lan_ip="${lan_ip%/*}"
-			# Only display the last entry
-			lan_ip="$(echo "$lan_ip" | tail -1)"
 
-			[ -n "$lan_ip" ] && break
+			# only include 192.168.x.x range
+			if [ ! -z "$(echo "$lan_ip" | grep "192.168")" ]; then
+				# Trim the CIDR suffix.
+				lan_ip="${lan_ip%/*}"
+				# Only display the last entry
+				lan_ip="$(echo "$lan_ip" | tail -1)"
+
+				[ -n "$lan_ip" ] && break
+			fi
 		done
 	fi
 
