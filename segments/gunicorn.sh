@@ -15,6 +15,8 @@ run_segment() {
 	HUP_COUNT=$(cat /var/log/ogreserver/gunicorn.log |grep "Handling signal: hup" |wc -l)
 	if [ ! -f $tmp_file_hups ]; then
 		echo $HUP_COUNT > $tmp_file_hups
+
+	# display asterisk on HUP
 	elif [ $HUP_COUNT -gt $(cat $tmp_file_hups) ]; then
 		echo "$PID*"
 	else
